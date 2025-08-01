@@ -1,30 +1,24 @@
-package com.jiaxin.cloudpicturebackend.model.entity;
+package com.jiaxin.cloudpicturebackend.model.dto.picture;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.jiaxin.cloudpicturebackend.common.PageRequest;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
+import java.util.List;
 
 /**
- * 图片
- * @TableName picture
+ * 图片查询请求
  */
-@TableName(value ="picture")
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class Picture implements Serializable {
+public class PictureQueryRequest extends PageRequest implements Serializable {
+
     /**
      * id
      */
-    @TableId(type = IdType.AUTO)
     private Long id;
-
-    /**
-     * 图片 url
-     */
-    private String url;
 
     /**
      * 图片名称
@@ -42,12 +36,12 @@ public class Picture implements Serializable {
     private String category;
 
     /**
-     * 标签（JSON 数组）
+     * 标签
      */
-    private String tags;
+    private List<String> tags;
 
     /**
-     * 图片体积
+     * 文件体积
      */
     private Long picSize;
 
@@ -62,7 +56,7 @@ public class Picture implements Serializable {
     private Integer picHeight;
 
     /**
-     * 图片宽高比例
+     * 图片比例
      */
     private Double picScale;
 
@@ -72,30 +66,14 @@ public class Picture implements Serializable {
     private String picFormat;
 
     /**
-     * 创建用户 id
+     * 搜索词（同时搜名称、简介等）
+     */
+    private String searchText;
+
+    /**
+     * 用户 id
      */
     private Long userId;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 编辑时间
-     */
-    private Date editTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-
-    /**
-     * 是否删除
-     */
-    private Integer isDelete;
-
 
     /**
      * 审核状态：0-待审核; 1-通过; 2-拒绝
@@ -118,10 +96,24 @@ public class Picture implements Serializable {
     private Date reviewTime;
 
     /**
-     * 缩略图 url
+     * 空间 id
      */
-    private String thumbnailUrl;
+    private Long spaceId;
 
-    @TableField(exist = false)
+    /**
+     * 是否只查询 spaceId 为 null 的数据
+     */
+    private boolean nullSpaceId;
+
+    /*
+     * 开始编辑时间
+     */
+    private Date startEditTime;
+
+    /*
+     * 结束编辑时间
+     */
+    private Date endEditTime;
+
     private static final long serialVersionUID = 1L;
 }
