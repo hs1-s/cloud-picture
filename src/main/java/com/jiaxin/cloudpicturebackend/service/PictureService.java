@@ -8,8 +8,8 @@ import com.jiaxin.cloudpicturebackend.model.entity.Picture;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.jiaxin.cloudpicturebackend.model.entity.User;
 import com.jiaxin.cloudpicturebackend.model.vo.PictureVO;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -25,6 +25,18 @@ public interface PictureService extends IService<Picture> {
      * @param picture
      */
     void validPicture(Picture picture);
+
+    /**
+     * 上传图片
+     *
+     * @param multipartFile
+     * @param pictureUploadRequest
+     * @param loginUser
+     * @return
+     */
+    PictureVO uploadPicture(MultipartFile multipartFile,
+                            PictureUploadRequest pictureUploadRequest,
+                            User loginUser);
 
     /**
      * 获取图片包装类（单条）
