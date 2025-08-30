@@ -1,12 +1,10 @@
 package com.jiaxin.cloudpicturebackend.model.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
 
 /**
  * 图片
@@ -94,8 +92,8 @@ public class Picture implements Serializable {
     /**
      * 是否删除
      */
+    @TableLogic
     private Integer isDelete;
-
 
     /**
      * 审核状态：0-待审核; 1-通过; 2-拒绝
@@ -121,6 +119,16 @@ public class Picture implements Serializable {
      * 缩略图 url
      */
     private String thumbnailUrl;
+
+    /**
+     * 空间 id（为空表示公共空间）
+     */
+    private Long spaceId;
+
+    /**
+     * 图片主色调
+     */
+    private String picColor;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
